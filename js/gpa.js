@@ -70,9 +70,13 @@
     return mode === '5.0' ? scoreToPoint5(score) : scoreToPoint4(score);
   }
 
-  /** 保留两位小数（四舍五入） */
+  /**
+   * 保留两位小数（四舍五入）
+   * 注意：先加 Number.EPSILON 抵消二进制浮点误差——
+   * 例如 2.005 在二进制中是 2.004999...，直接 *100 会得到 200.4999... 被错误舍去。
+   */
   function round2(n) {
-    return Math.round(n * 100) / 100;
+    return Math.round((n + Number.EPSILON) * 100) / 100;
   }
 
   /**

@@ -7,7 +7,7 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 
-const { parseScore, scoreToPoint4, scoreToPoint5, scoreToPoint, computeStats } = require('../js/gpa.js');
+const { parseScore, scoreToPoint4, scoreToPoint5, scoreToPoint, computeStats, round2 } = require('../js/gpa.js');
 
 test('parseScore：解析百分制数字', () => {
   assert.equal(parseScore('92'), 92);
@@ -96,6 +96,12 @@ test('computeStats：空列表返回 null', () => {
   assert.equal(s.totalCredits, 0);
   assert.equal(s.weightedAverage, null);
   assert.equal(s.gpa, null);
+});
+
+test('round2：浮点边界四舍五入（2.005 应进位为 2.01）', () => {
+  assert.equal(round2(2.005), 2.01);
+  assert.equal(round2(3.375), 3.38);
+  assert.equal(round2(1.005), 1.01);
 });
 
 test('computeStats：过滤无效课程（脏数据）', () => {
