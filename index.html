@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="description" content="GPA+ 校园学业助手：绩点计算、课程管理、作业待办，零依赖、数据保存在本地浏览器" />
+  <title>GPA+ 校园学业助手</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>🎓 GPA+ 校园学业助手</h1>
+      <p class="subtitle">绩点计算 · 课程管理 · 作业待办 —— 零依赖、零安装，数据只保存在你的浏览器里</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- 统计概览 -->
+    <section class="stats-grid" id="statsGrid" aria-label="统计概览"></section>
+
+    <!-- 课程与绩点 -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>📚 课程与绩点</h2>
+        <div class="toolbar">
+          <label class="mode-select">算法
+            <select id="modeSelect">
+              <option value="4.0">4.0 分档制（美式）</option>
+              <option value="5.0">5.0 连续制（(分数−50)/10）</option>
+            </select>
+          </label>
+          <button id="sampleBtn" class="btn ghost" type="button">载入示例</button>
+          <button id="exportBtn" class="btn ghost" type="button">导出 JSON</button>
+          <button id="clearCoursesBtn" class="btn danger-ghost" type="button">清空课程</button>
+        </div>
+      </div>
+
+      <form id="courseForm" class="form-row">
+        <input id="courseName" class="input grow" type="text" placeholder="课程名，如：高等数学" required />
+        <input id="courseCredits" class="input credits" type="number" min="0.5" max="20" step="0.5" placeholder="学分" required />
+        <input id="courseScore" class="input score" type="text" placeholder="成绩：92 或 优秀" required />
+        <button type="submit" class="btn primary">添加课程</button>
+      </form>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>课程</th><th>学分</th><th>成绩</th><th>绩点（当前算法）</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="courseBody"></tbody>
+        </table>
+        <p id="courseEmpty" class="empty hidden">还没有课程，先添加一门，或点右上角「载入示例」体验～</p>
+      </div>
+    </section>
+
+    <!-- 作业待办 -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>✅ 作业待办<span id="todoCount" class="count-badge"></span></h2>
+        <button id="clearTodosBtn" class="btn danger-ghost" type="button">清空已完成</button>
+      </div>
+
+      <form id="todoForm" class="form-row">
+        <input id="todoTitle" class="input grow" type="text" placeholder="任务，如：高数第三章习题" required />
+        <input id="todoCourse" class="input" type="text" placeholder="所属课程（可留空）" />
+        <input id="todoDue" class="input due" type="date" title="截止日期" />
+        <button type="submit" class="btn primary">添加</button>
+      </form>
+
+      <ul id="todoList" class="todo-list"></ul>
+      <p id="todoEmpty" class="empty hidden">暂无待办，添加一个吧～</p>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>零依赖 · 无后端 · 数据仅保存在本地浏览器（localStorage）· 可配合 GitHub Pages 在线使用</p>
+  </footer>
+
+  <script src="js/gpa.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
