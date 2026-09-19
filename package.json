@@ -1,0 +1,11 @@
+{
+  "name": "campus-gpa-helper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GPA+ 校园学业助手：绩点计算、课程管理、作业待办（零依赖）",
+  "scripts": {
+    "test": "node --test",
+    "start": "python3 -m http.server 8080"
+  },
+  "license": "MIT"
+}
